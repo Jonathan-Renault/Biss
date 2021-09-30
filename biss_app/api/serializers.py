@@ -8,3 +8,4 @@ class HistorySerializer(serializers.ModelSerializer):
     class Meta:
         model = History
         exclude = ('id', 'created',)
+
