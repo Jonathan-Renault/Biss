@@ -3,12 +3,6 @@ from watchmate_app.models import WatchM, PlatformM, ReviewM
 from rest_framework import serializers
 
 
-class PlatformSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PlatformM
-        fields = ['id', 'name', 'site', 'created', 'updated', ]
-
-
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = ReviewM
@@ -23,4 +17,9 @@ class WatchSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'watchlist', 'platform', 'created', 'updated', ]
 
 
+class PlatformSerializer(serializers.ModelSerializer):
+    platform = WatchSerializer(many=True, read_only=True)
 
+    class Meta:
+        model = PlatformM
+        fields = ['id', 'name', 'site', 'platform', 'created', 'updated', ]

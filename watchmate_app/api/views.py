@@ -25,6 +25,14 @@ class PlatformDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PlatformSerializer
 
 
+class WatchByPlatform(generics.ListAPIView):
+    serializer_class = PlatformSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        return PlatformM.objects.filter(platform=pk)
+
+
 class ReviewList(generics.ListCreateAPIView):
     queryset = ReviewM.objects.all()
     serializer_class = ReviewSerializer
